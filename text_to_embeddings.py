@@ -14,6 +14,7 @@ if __name__ == "__main__":
     parser.add_argument('model_path_',help='Path of the word2vec twitter model bin file')
     parser.add_argument('input_file',help='File to read the input text data')
     parser.add_argument('output_file',help='File to write the vectors')
+    parser.add_argument('vector_dimension',help='dimension of output vector using word2vec model',type=int)
     args = parser.parse_args()
     
     #model_path = args.model_path_
@@ -24,12 +25,12 @@ if __name__ == "__main__":
     #print(("The vocabulary size is: "+str(len(model.vocab))))
     #print("Vector for 'Shubham': " + str(model['Shubham']))
     #print("Embedding dimension: " + str(len(model['Shubham'])))
-    #f1=open("vec1.txt","w")
+    #f1=open("embedding_vectors_400.txt","w")
     f1=open(args.output_file,'w')
-    zero=[0] * 400
+    zero=[0] * args.vector_dimension
     #Specify encoding with io.open (careful io.open is slow, don't use for large files)
     #latin-1 is usually the culprit if the files aren't utf-8 encoded
-    #with io.open("new_latin-1.txt", "r", encoding='latin-1') as f:
+    #with io.open("dataset_latin-1.txt", "r", encoding='latin-1') as f:
     with io.open(args.input_file, "r", encoding='latin-1') as f:
         for line in f:
             #spaCy would do this better :)
