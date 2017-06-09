@@ -68,7 +68,7 @@ def text_to_embeddings(model_path, input_file, output_file,vector_dimension):
             f1.write("\n")
     print("There are"+str(count)+"out of vocabulary sentences.")
     print(max_length)   
-    return None
+    return max_length
     
     
 def text_to_embeddings_npy(model_path, input_file, output_file,vector_dimension):
@@ -85,7 +85,7 @@ def text_to_embeddings_npy(model_path, input_file, output_file,vector_dimension)
                 f1.write(" ")
             f1.write(row[len(row)-1])
             f1.write("\n")
-    text_to_embeddings(model_path, "dataset_latin_1_new.txt","embedding_vectors_400_new.txt",vector_dimension)
+    max_length=text_to_embeddings(model_path, "dataset_latin_1_new.txt","embedding_vectors_400_new.txt",vector_dimension)
     print("working_1")
     max_length_diff = 0
     count =0
@@ -107,7 +107,7 @@ def text_to_embeddings_npy(model_path, input_file, output_file,vector_dimension)
 
     flag=0
     vector = np.array([]) 
-    max_length = 58
+    #max_length = 58
     zero =  np.zeros((400,), dtype=np.float)
     with open("embedding_vectors_400_new.txt","r") as f:
         for line in f:
